@@ -20,14 +20,14 @@ public class Hangman {
 
     public static void main(String[] args){
         Hangman hangman = new Hangman();
-        hangman.Setup();
+        hangman.setup();
 
     }//end of main
 
-    private void Setup(){
+    private void setup(){
         System.out.println("Hangman\n\nGuess a word!\n\n");
-        //randNum = randNumberGenerator();
-        secretWord = randomWordGenerator(randNumberGenerator());
+        randNum = randNumberGenerator();
+        secretWord = randomWordGenerator();
         System.out.println(secretWord);
         System.out.println(displayCreation());
         getGuess();
@@ -35,36 +35,43 @@ public class Hangman {
 
    public Integer randNumberGenerator() {
         Random rand = new Random();
-        int num =  rand.nextInt(5);
-        return num;
+        randNum =  rand.nextInt(5);
+        return randNum;
     }//end of randNumberGenerator
-    public String randomWordGenerator(int randNum){
+
+    public String randomWordGenerator(){
         String randomWord = ("");
         switch(randNum){
             case 0:
                 randomWord= "Frog";
                 numberOfGuesses = randomWord.length();
                 guessesRemaining = numberOfGuesses;
+                break;
             case 1:
                 randomWord= "Toad";
                 numberOfGuesses = randomWord.length();
                 guessesRemaining = numberOfGuesses;
+                break;
             case 2:
                 randomWord= "Very";
                 numberOfGuesses = randomWord.length();
                 guessesRemaining = numberOfGuesses;
+                break;
             case 3:
                 randomWord= "Just";
                 numberOfGuesses = randomWord.length();
                 guessesRemaining = numberOfGuesses;
+                break;
             case 4:
                 randomWord= "Love";
                 numberOfGuesses = randomWord.length();
                 guessesRemaining = numberOfGuesses;
+                break;
             case 5:
                 randomWord= "Were";
                 numberOfGuesses = randomWord.length();
                 guessesRemaining = numberOfGuesses;
+                break;
         }
         return randomWord;
     }//end of randomWordGenerator
@@ -87,8 +94,8 @@ public class Hangman {
         for(int i = 0; i < numberOfGuesses; i++){
             if(!guess.equalsIgnoreCase(secretWord)) {
                 for (int j = 0; j < numberOfGuesses; j++) {
-                    if (String.valueOf(guess.charAt(j)) == String.valueOf(secretWord.charAt(j))) {
-                        System.out.println(displayChange(j, guess.charAt(j)));
+                    if (String.valueOf(guess.charAt(j)).equalsIgnoreCase( String.valueOf(secretWord.charAt(j)))) {
+                        displayChange(j, guess.charAt(j));
                     }
                 }
                 if(guessesRemaining !=0){
@@ -110,14 +117,17 @@ public class Hangman {
 
     public String displayChange(int j, char letter){
         String displayArray[] = display.toString().split(" _",numberOfGuesses);
-        displayArray[j].toString().replace("_",String.valueOf(letter));
-        return displayArray.toString();
+        String replacement = String.valueOf(letter) + " ";
+        display.replace(j,j+2,replacement);
+        //displayArray[j].toString().replaceAll(" ", String.valueOf(letter) + " ");
+        return display.toString().toUpperCase();
     }
 
     public boolean playAgain(){
+        display.setLength(0);
         System.out.println("Play again? y/n");
         if(in.nextLine().equalsIgnoreCase("y")){
-            Setup();
+            setup();
         }else{
             System.out.println("Game Over.");
         }
