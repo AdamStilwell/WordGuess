@@ -28,14 +28,14 @@ public class Hangman {
         System.out.println("Hangman\n\nGuess a word!\n\n");
         randNum = randNumberGenerator();
         secretWord = randomWordGenerator();
-        System.out.println(secretWord);
+        //System.out.println(secretWord);
         System.out.println(displayCreation());
         getGuess();
-    }
+    } //end of setup
 
    public Integer randNumberGenerator() {
         Random rand = new Random();
-        randNum =  rand.nextInt(5);
+        randNum = rand.nextInt(11);
         return randNum;
     }//end of randNumberGenerator
 
@@ -72,6 +72,33 @@ public class Hangman {
                 numberOfGuesses = randomWord.length();
                 guessesRemaining = numberOfGuesses;
                 break;
+            case 6:
+                randomWord= "Frozen";
+                numberOfGuesses = randomWord.length();
+                guessesRemaining = numberOfGuesses;
+                break;
+            case 7:
+                randomWord= "Great";
+                numberOfGuesses = randomWord.length();
+                guessesRemaining = numberOfGuesses;
+                break;
+            case 8:
+                randomWord= "Slink";
+                numberOfGuesses = randomWord.length();
+                guessesRemaining = numberOfGuesses;
+                break;
+            case 9:
+                randomWord= "Point";
+                numberOfGuesses = randomWord.length();
+                guessesRemaining = numberOfGuesses;
+                break;
+            case 10:
+                randomWord= "Built";
+                numberOfGuesses = randomWord.length();
+                guessesRemaining = numberOfGuesses;
+                break;
+
+
         }
         return randomWord;
     }//end of randomWordGenerator
@@ -100,12 +127,13 @@ public class Hangman {
                 }
                 if(guessesRemaining !=0){
                     guessesRemaining--;
+                    if(guessesRemaining == 0) {
+                        System.out.println("Out of guesses! The word was: " +secretWord + ". Better luck next time!");
+                        playAgain();
+                    }
                     System.out.println(display);
                     System.out.println("Guess again! Guesses remaining: " + guessesRemaining);
                     getGuess();
-                }else{
-                    System.out.println("Out of guesses! The word was: " +secretWord + "Better luck next time!");
-                    playAgain();
                 }
             }else{
                 System.out.println("Congratulations! You guessed the word with " + guessesRemaining + " guesses remaining!");
@@ -121,7 +149,7 @@ public class Hangman {
         display.replace(j,j+2,replacement);
         //displayArray[j].toString().replaceAll(" ", String.valueOf(letter) + " ");
         return display.toString().toUpperCase();
-    }
+    } //end of displayChange
 
     public boolean playAgain(){
         display.setLength(0);
@@ -132,7 +160,7 @@ public class Hangman {
             System.out.println("Game Over.");
         }
         return true;
-    }
+    } //end of playAgain
 
 }//end of Hangman
 
