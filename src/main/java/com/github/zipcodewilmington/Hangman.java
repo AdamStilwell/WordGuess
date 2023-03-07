@@ -192,6 +192,7 @@ public class Hangman {
             setup();
         }else{
             System.out.println("Game Over.");
+            System.exit(1);
         }
         return true;
     } //end of playAgain
