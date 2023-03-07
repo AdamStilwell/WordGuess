@@ -1,6 +1,7 @@
 package com.github.zipcodewilmington;
 
 
+import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -152,7 +153,7 @@ public class Hangman {
                         System.out.println("Out of guesses! The word was: " +secretWord.toUpperCase() + ". Better luck next time!");
                         streak = 0;
                         if(replay == true){
-                            System.out.println("Your current win streak is "+streak);
+                            System.out.println("Your current win streak is: "+streak);
                         }
                         playAgain();
                     }
@@ -191,8 +192,9 @@ public class Hangman {
             replay = true;
             setup();
         }else{
+            System.out.println("Your win streak was: "+streak);
             System.out.println("Game Over.");
-            System.exit(1);
+            System.exit(0);
         }
         return true;
     } //end of playAgain
