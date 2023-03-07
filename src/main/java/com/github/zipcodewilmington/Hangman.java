@@ -11,7 +11,7 @@ import java.util.Scanner;
  */
 public class Hangman {
     public String secretWord, guess, letter;
-    public String [] pos = new String[6];
+    public String [] pos = new String[9];
     public StringBuilder display = new StringBuilder();
     public Scanner in = new Scanner(System.in);
     public static Integer randNum = 0;
@@ -36,7 +36,7 @@ public class Hangman {
 
    public Integer randNumberGenerator() {
         Random rand = new Random();
-        randNum = rand.nextInt(11);
+        randNum = rand.nextInt(12);
         return randNum;
     }//end of randNumberGenerator
 
